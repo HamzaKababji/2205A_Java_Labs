@@ -130,7 +130,7 @@ public class DemoStactAndQueue_Hamza {
                 choice = input.nextInt();
 
                 if (choice != 1 && choice != 2 && choice != 3) {
-                    throw new InputMismatchException();
+                    throw new Exception();
                 }
 
                 switch (choice) {
@@ -145,7 +145,7 @@ public class DemoStactAndQueue_Hamza {
                         break;
                 }
 
-            } catch (InputMismatchException ex) {
+            } catch (Exception ex) {
                 System.out.printf("Invalid choice!\n\n");
                 input.nextLine();
             }

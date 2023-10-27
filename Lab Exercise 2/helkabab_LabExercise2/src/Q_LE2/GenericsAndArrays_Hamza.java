@@ -13,11 +13,11 @@ public class GenericsAndArrays_Hamza {
                 "To see the list of the students from a specific year, enter an integer between 2 and 4 when prompted.");
 
         // Create ArrayLists to store academic years and student names.
-        ArrayList<Integer> yearList = new ArrayList(Arrays.asList(2, 3, 4, 3, 2, 2));
-        ArrayList<String> nameList = new ArrayList(Arrays.asList("Harry", "Lavender", "Ron", "Hermione", "Luna", "Vincent"));
+        ArrayList<Integer> yearList = new ArrayList<>(Arrays.asList(2, 3, 4, 3, 2, 2));
+        ArrayList<String> nameList = new ArrayList<>(Arrays.asList("Harry", "Lavender", "Ron", "Hermione", "Luna", "Vincent"));
 
         // Create an array of Pair objects to associate academic years with student names.
-        Pair[] pairList = new Pair[yearList.size()];
+        Pair<Integer, String>[] pairList = new Pair[yearList.size()];
 
         char c = 'y'; // Initialize a character for user input.
 
@@ -27,7 +27,7 @@ public class GenericsAndArrays_Hamza {
 
         // Populate the array of Pair objects with academic years and student names.
         for (int i = 0; i < yearList.size(); i++) {
-            pairList[i] = new Pair(yearList.get(i), nameList.get(i));
+            pairList[i] = new Pair<>(yearList.get(i), nameList.get(i));
         }
 
         do {
@@ -42,7 +42,7 @@ public class GenericsAndArrays_Hamza {
 
                 // Create an ArrayList to store student names from the specified year.
                 ArrayList<String> userAnswer = new ArrayList<>(0);
-                for (Pair element : pairList) {
+                for (Pair<Integer,String> element : pairList) {
                     // Iterate through the Pair objects and add matching names to the ArrayList.
                     if ((int) element.getKey() == x) {
                         userAnswer.add((String) element.getValue());
@@ -61,7 +61,7 @@ public class GenericsAndArrays_Hamza {
                 System.out.print("Incorrect input! "); // Handle invalid input.
                 input.nextLine(); // Consume the newline character.
             }
-        } while (c == 'y'); // Continue the loop as long as the user chooses to continue.
+        } while (c == 'y' || c == 'Y'); // Continue the loop as long as the user chooses to continue.
 
         myFooter(2); // Call a custom method to display the footer for the lab exercise.
     }
