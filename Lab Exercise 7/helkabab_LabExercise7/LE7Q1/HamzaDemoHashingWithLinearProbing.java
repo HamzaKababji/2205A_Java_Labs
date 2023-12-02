@@ -44,18 +44,22 @@ public class HamzaDemoHashingWithLinearProbing {
         }
     }
     
-    public static int checkPrime(int n) {
-        int m = n / 2;//we just need to check half of the n factors
-        for (int i = 3; i <= m; i++) {
-            if (n % i == 0) {//if n is not a prime number
-                i = 2; //reset i to 2 so that it is incremented to 3 in the for-header
-                //System.out.printf("i = %d\n",i);
-                n++;//next n value
-                m = n / 2;//we just need to check half of the n factors
+    public static int checkPrime(int newSize) {
+        int sqrtSize = (int) Math.floor(Math.sqrt(newSize));
+
+        // Increment newSize until a prime number is found
+        for (int i = 2; i <= sqrtSize; ++i) {
+            if (newSize % i == 0) {
+                ++newSize;
+                sqrtSize = (int) Math.floor(Math.sqrt(newSize));
+                i = 1;
             }
         }
-        return n;
-    }//end of checkPrime()
+
+        // Update tableCapacity and return newSize
+        tableCapacity = newSize;
+        return newSize;
+    }
 
     // Method to remove a value from hash table using linear probing
     public static void removeValueLinearProbe(Integer valueToRemove) {
@@ -188,16 +192,19 @@ public class HamzaDemoHashingWithLinearProbing {
 
         System.out.print("Enter a value you want to remove: ");
         removeValueLinearProbe(input.nextInt());
+        
         System.out.print(" ");
         printHashTable();
 
         System.out.print("Enter a value you want to add: ");
-        addValueLinearProbe(input.nextInt());
 
+        addValueLinearProbe(input.nextInt());
         printHashTable();
 
         System.out.println("\nRehashing the table...");
         System.out.println("The rehashed table capacity is: " + checkPrime(tableCapacity * 2));
+
+        reHashingWithLinearProbing();
         printHashTable();
 
         myFooter(7, 1);
